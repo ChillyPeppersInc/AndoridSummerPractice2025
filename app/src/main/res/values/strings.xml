@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">SummerPractice25</string>
+
+    <string name="header_text">Hello world!</string>
+    <string name="hello_android">Hello android!</string>
+    <string name="button_text">Click me</string>
+    <string name="decr_text">Sample</string>
+    <string name="next_button_text">Go to next</string>
+    <string name="settings_button_text">Go to settings</string>
+    <string name="show_dialog_text">Show dialog</string>
+    <string name="got_it">Got it</string>
+    <string name="open_list_page_text">Open list page</string>
+    <string name="list_data_empty_error">Данные не были получены</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome">Добро пожаловать!</string>
+    <string name="registration">Регистрация</string>
+    <string name="registration_button_text">Зарегистрироваться</string>
+    <string name="go_to_login_button_text">Уже есть аккаунт? Войти</string>
+    <string name="login">Вход</string>
+    <string name="go_to_registration_button_text">Еще нет аккаунта? Зарегистрироваться</string>
+    <string name="login_button_text">Войти</string>
+</resources>
