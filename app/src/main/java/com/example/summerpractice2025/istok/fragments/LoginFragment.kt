@@ -19,29 +19,28 @@ import com.example.summerpractice2025.istok.R
 import com.example.summerpractice2025.istok.DateBase.User
 import com.example.summerpractice2025.istok.DateBase.AppDatabase
 import com.example.summerpractice2025.istok.DateBase.UserDao
+import com.example.summerpractice2025.istok.databinding.FragmentLoginBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class RegistrationFragment : Fragment(R.layout.fragment_registration) {
+class LoginFragment : Fragment(R.layout.fragment_login) {
 
-    private var viewBinding: FragmentRegistrationBinding? = null
+    private var viewBinding: FragmentLoginBinding? = null
     private var correctEmail = false;
     private var correctPassword = false;
-    private var correctRepeatPassword = false;
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding = FragmentRegistrationBinding.bind(view)
+        viewBinding = FragmentLoginBinding.bind(view)
         initViews()
     }
 
     private fun initViews() {
         viewBinding?.apply {
 
-            registrationButton.isEnabled = false
+            loginButton.isEnabled = false
             emailEt.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(p0: Editable?) {}
 
@@ -61,10 +60,10 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
                 } else {
                     emailTv.visibility = View.INVISIBLE
                 }
-                if (correctPassword and correctEmail and correctRepeatPassword) {
-                    registrationButton.isEnabled = true;
+                if (correctEmail) {
+                    loginButton.isEnabled = true;
                 } else {
-                    registrationButton.isEnabled = false;
+                    loginButton.isEnabled = false;
                 }
             }
 
@@ -73,65 +72,25 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
                 val regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}\$".toRegex()
 
                 correctPassword = safeInput.matches(regex)
-                if (!correctPassword) {
-                    passwordTv.visibility = View.VISIBLE
-                } else {
-                    passwordTv.visibility = View.INVISIBLE
-                }
-                if (correctPassword and correctEmail and correctRepeatPassword) {
-                    registrationButton.isEnabled = true;
-                } else {
-                    registrationButton.isEnabled = false;
-                }
             }
 
-            repeatPasswordEt.doOnTextChanged { input, _, _, _ ->
-                val safeInput = input ?: ""
-
-                correctRepeatPassword = safeInput.toString() == passwordEt.text.toString()
-                if (!correctRepeatPassword) {
-                    repeatPasswordTv.visibility = View.VISIBLE
-                } else {
-                    repeatPasswordTv.visibility = View.INVISIBLE
-                }
-                if (correctPassword and correctEmail and correctRepeatPassword) {
-                    registrationButton.isEnabled = true;
-                } else {
-                    registrationButton.isEnabled = false;
-                }
-            }
-
-            registrationButton.setOnClickListener {
+            loginButton.setOnClickListener {
                 val userDao = DatabaseManager.userDao
                 val email = emailEt.text.toString()
-                val password = passwordEt.text.toString()
-
                 lifecycleScope.launch {
-                    val userExists = withContext(Dispatchers.IO) {
-                        userDao.getUserCountByEmail(email) > 0
-                    }
-
-                    Log.d("DB_TEST", "User exists: ${userExists}")
-
-                    if (!userExists) {
-                        val testUser = User(
-                            email = email,
-                            password = passwordEt.text.toString()
-                        )
-                        withContext(Dispatchers.IO) {
-                            userDao.insert(testUser)
-                        }
-                        Log.d("DB_TEST", "Записано!")
-                        findNavController().navigate(R.id.action_registrationFragment_to_mainActivity)
+                    val user = userDao.findByEmail(email)
+                    if (user?.password == passwordEt.text.toString()) {
+                        findNavController().navigate(R.id.action_loginFragment_to_mainActivity)
                     } else {
-                        registratioTv.visibility = View.VISIBLE
+                        loginTv.visibility = View.VISIBLE
                     }
                 }
             }
 
-            goToLoginBtn.setOnClickListener {
-                findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
+            goToRegistrationBtn.setOnClickListener {
+                findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
             }
+
         }
     }
 

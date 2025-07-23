@@ -10,20 +10,27 @@ import androidx.room.Query
 @Dao
 interface UserDao {
     @Query("SELECT * FROM user")
-    fun getAllUsers(): LiveData<MutableList<User?>?>?
+    suspend fun getAllUsers(): List<User>?
 
     @Query("SELECT * FROM user WHERE uid IN (:userIds)")
-    fun loadAllByIds(userIds: IntArray): LiveData<MutableList<User?>?>?
+    suspend fun loadAllByIds(userIds: IntArray): List<User>?
 
-    @Query("SELECT * FROM user WHERE email LIKE :email LIMIT 1")
-    fun findByEmail(email: String): LiveData<User?>?
-
-    @Insert
-    fun insertAll(vararg users: User)
+    @Query("SELECT * FROM user WHERE email = :email LIMIT 1")
+    suspend fun findByEmail(email: String): User?
 
     @Insert
-    fun insert(user: User)
+    suspend fun insertAll(vararg users: User)
+
+    @Insert
+    suspend fun insert(user: User)
 
     @Delete
-    fun delete(user: User)
+    suspend fun delete(user: User)
+
+    @Query("SELECT COUNT(*) FROM user WHERE email = :email")
+    suspend fun getUserCountByEmail(email: String): Int
+
+    suspend fun userExists(email: String): Boolean {
+        return getUserCountByEmail(email) > 0
+    }
 }
