@@ -29,7 +29,10 @@ class ResourcesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val resources = listOf(
-            EducationalResource("Канал TheBatya", R.drawable.thebatya, "норм", "https://www.youtube.com/channel/UCapIu0SouNfqYFdZjoPPgaw")
+            EducationalResource("Канал TheBatya", R.drawable.thebatya, "Разбор билетов по дискре и алгему", "https://www.youtube.com/channel/UCapIu0SouNfqYFdZjoPPgaw"),
+            EducationalResource("Канал Профессор Лобанов", R.drawable.lobanov, "Разбор билетов по дискре", "https://www.youtube.com/@baronsamedi1511"),
+            EducationalResource("Док TomatoJuice по проге 1 семестр", R.drawable.tomatojuice, "", ""),
+            EducationalResource("Презентации М.М. Абрамского по ИиП 1 семестр", R.drawable.abr, "", "")
         )
 
         binding.resourcesRecyclerView.layoutManager = LinearLayoutManager(context)
