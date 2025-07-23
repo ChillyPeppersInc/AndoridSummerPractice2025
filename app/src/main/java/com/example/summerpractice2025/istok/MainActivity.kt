@@ -5,8 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.summerpractice2025.istok.databinding.ActivityMainBinding
-import com.example.summerpractice2025.istok.fragments.FoodFragment
 import com.example.summerpractice2025.istok.fragments.ResourcesFragment
+import com.example.summerpractice2025.istok.fragments.RestaurantsFragment
 import com.example.summerpractice2025.istok.fragments.TeachersFragment
 
 class MainActivity : AppCompatActivity() {
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_food -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, FoodFragment())
+                        .replace(R.id.fragment_container, RestaurantsFragment())
                         .commit()
                     true
                 }
