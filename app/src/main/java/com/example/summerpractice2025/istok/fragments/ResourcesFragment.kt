@@ -1,10 +1,15 @@
 package com.example.summerpractice2025.istok.fragments
 
+import EducationalResource
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.summerpractice2025.istok.R
+import com.example.summerpractice2025.istok.adapters.ResourcesAdapter
 import com.example.summerpractice2025.istok.databinding.FragmentResourcesBinding
 
 class ResourcesFragment : Fragment() {
@@ -22,7 +27,20 @@ class ResourcesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.titleText.text = "Учебные ресурсы"
+
+        val resources = listOf(
+            EducationalResource("Канал TheBatya", R.drawable.thebatya, "норм", "https://www.youtube.com/channel/UCapIu0SouNfqYFdZjoPPgaw")
+        )
+
+        binding.resourcesRecyclerView.layoutManager = LinearLayoutManager(context)
+        binding.resourcesRecyclerView.adapter = ResourcesAdapter(resources) { resource ->
+            val detailFragment = ResourceDetailFragment.newInstance(resource)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, detailFragment)
+                .addToBackStack(null)
+                .commit()
+        }
+        binding.resourcesRecyclerView.setHasFixedSize(true)
     }
 
     override fun onDestroyView() {
