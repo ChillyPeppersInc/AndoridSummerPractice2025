@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_light">
 
-    <TextView
-        android:id="@+id/titleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Преподаватели"
-        android:textSize="24sp"
-        android:layout_gravity="center"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/teachers_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:layout_marginTop="100dp"/>
+
 </FrameLayout>
