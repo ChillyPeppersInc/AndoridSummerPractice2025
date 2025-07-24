@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Соцсети Антона -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="100dp"
+            android:text="Антон"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/anton_vk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="VK" />
+
+        <Button
+            android:id="@+id/anton_tg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telegram"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Соцсети Тимура -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Тимур"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp"/>
+
+        <Button
+            android:id="@+id/timur_tg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telegram"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Соцсети Самира -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Самир"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp"/>
+
+        <Button
+            android:id="@+id/samir_tg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telegram"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Соцсети Арслана -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Арслан"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp"/>
+
+        <Button
+            android:id="@+id/arslan_tg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telegram"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Donation Alerts -->
+        <Button
+            android:id="@+id/donation_alerts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Поддержать проект"
+            android:layout_marginTop="32dp"
+            app:backgroundTint="#20a805" />
+
+
+        <!-- Выход -->
+        <Button
+            android:id="@+id/logout_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Выйти"
+            android:layout_marginTop="16dp"
+            app:backgroundTint="#FF5722" />
+    </LinearLayout>
+</ScrollView>
